@@ -3,8 +3,9 @@ from urllib.request import urlretrieve
 import pandas as pd
 
 GREENWAY_URL = 'https://data.seattle.gov/api/views/47yq-6ugv/rows.csv?accessType=DOWNLOAD'
+FREMONT_URL = 'https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD'
 
-def get_bicycle_traffic_data(filename='greenway.csv', url=GREENWAY_URL,
+def get_bicycle_traffic_data(filename='fremont.csv', url=FREMONT_URL,
                              force_download=False):
     """Download and cache Seattle bicycle traffic data (Greenway data default)
 
@@ -24,6 +25,7 @@ def get_bicycle_traffic_data(filename='greenway.csv', url=GREENWAY_URL,
     """
     if force_download or not os.path.exists(filename):
         urlretrieve(url, filename)
-    data = pd.read_csv('greenway.csv', index_col='Date',parse_dates=True)
-    data.columns = ('Total', 'East', 'West')
+    data = pd.read_csv(filename, index_col='Date',parse_dates=True)
+    data.columns = ['West', 'East']
+    data['Total'] = data['West'] + data['East']
     return data

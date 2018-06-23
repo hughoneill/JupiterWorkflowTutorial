@@ -3,5 +3,5 @@ import pandas as pd
 
 def test_bicycle_traffic_data():
     data = get_bicycle_traffic_data()
-    assert all(data.columns == ['Total', 'East', 'West'])
+    assert all(data.columns == [ 'West','East','Total'])
     assert isinstance(data.index, pd.DatetimeIndex)

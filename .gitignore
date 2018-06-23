@@ -105,6 +105,7 @@ venv.bak/
 
 # Jupyter tutorial
 greenway.csv
+fremont.csv
 
 # emacs
 *~
