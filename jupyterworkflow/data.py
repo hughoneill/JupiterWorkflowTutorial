@@ -29,7 +29,7 @@ def get_bicycle_traffic_data(filename='fremont.csv', url=FREMONT_URL,
     # removed parameter parse_dates=True and used below to speed up processing
     data = pd.read_csv('fremont.csv', index_col='Date')
     try:
-        data.index = pd.to_datetime(data.index, format='%m/%d/%Y %H:%M:%S %p')
+        data.index = pd.to_datetime(data.index, format='%m/%d/%Y %I:%M:%S %p')
     except TypeError:
         data.index = pd.to_datetime(data.index)
 
